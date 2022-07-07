@@ -148,10 +148,10 @@ def vigenere_cipher(message, key):
     #Operationalization
     message_length = len(message)
     key_length = len(key)
+    key_list = list(key)
     key_number = [ord(i) for i in key]
     message_number = [ord(i) for i in message]
     cipher = ""
-    key_list = list(key)
     #KeyGeneration
     if message_length == key_length:
         key = key
@@ -161,9 +161,12 @@ def vigenere_cipher(message, key):
         key = "".join(key_list)
     #Encryption
     for i in range(len(message_number)):
-        value = (message_number[i] + key_number[i % key_length]) % 26
-        cipher += chr(value + 65)
-    return cipher 
+        if message[i].isalpha():
+            value = (message_number[i] + key_number[i % key_length]) % 26
+            cipher += chr(value + 65)
+        else:
+            cipher += message[i]
+    return cipher
 
 def scytale_cipher(message, shift):
     '''Scytale Cipher.
