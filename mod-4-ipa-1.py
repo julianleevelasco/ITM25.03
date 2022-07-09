@@ -46,13 +46,13 @@ def relationship_status(from_member, to_member, social_graph):
     Second_Statement = from_member in social_graph[to_member]['following']
     #IF-STATEMENTS
     if First_Statement == 1 and Second_Statement == 1:
-        status = 'Friends'
+        status = 'friends'.title()
     elif First_Statement == 1 and Second_Statement == 0:
-        status = 'Follower'
+        status = 'follower'.title()
     elif First_Statement == 0 and Second_Statement == 1:
-        status = 'Followed by'
+        status = 'followed'.title() + ' ' + 'by'
     elif First_Statement == 0 and Second_Statement == 0:
-        status = 'No Relationship'
+        status = 'no relationship'.title()
     #RELATIONSHIP-STATUS
     return status
 
@@ -99,7 +99,7 @@ def tic_tac_toe(board):
     test.append(slant1)
     ###
     i = 0
-    j = 2
+    j = len(board[i]) - 1
     while i < len(board):
         slant2.append(board[i][j])
         i += 1
@@ -150,28 +150,27 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    route_map = legs
     final_time = 0
-    if (first_stop, second_stop) in legs:
-        travel_time = legs[(first_stop, second_stop)]["travel_time_mins"]
+    if (first_stop, second_stop) in route_map:
+        travel_time = route_map[(first_stop, second_stop)]["travel_time_mins"]
         final_time = travel_time
     else:
-        keys = legs.keys()
+        keys = route_map.keys()
         key_list = list(keys)
-        for i in range(0,len(legs)):
+        for i in range(0,len(route_map)):
             if key_list[i][0] is first_stop:
-                travel_time = legs[key_list[i]]["travel_time_mins"]
+                travel_time = route_map[key_list[i]]["travel_time_mins"]
                 final_time += travel_time
                 i += 1
-                if i >= len(legs):
+                if i >= len(route_map):
                     i = 0
                 while key_list[i][1] is not second_stop:
-                    travel_time = legs[key_list[i]]["travel_time_mins"]
+                    travel_time = route_map[key_list[i]]["travel_time_mins"]
                     final_time += travel_time
                     i += 1
-                    if i >= len(legs):
+                    if i >= len(route_map):
                         i = 0
             elif key_list[i][1] is second_stop:
-                travel_time = legs[key_list[i]]["travel_time_mins"]
+                travel_time = route_map[key_list[i]]["travel_time_mins"]
                 final_time += travel_time
     return final_time
