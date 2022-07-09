@@ -41,7 +41,6 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    from sample import social_graph
     #TRUE-OR-FALSE
     First_Statement = to_member in social_graph[from_member]['following'] 
     Second_Statement = from_member in social_graph[to_member]['following']
@@ -83,7 +82,6 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    from sample import board1, board2, board3, board4, board5, board6, board7
     x_win = ['X'] * len(board)
     o_win = ['O'] * len(board)
     slant1 = []
@@ -152,7 +150,6 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    from sample import legs
     route_map = legs
     final_time = 0
     if (first_stop, second_stop) in legs:
