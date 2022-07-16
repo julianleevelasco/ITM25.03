@@ -46,15 +46,13 @@ def relationship_status(from_member, to_member, social_graph):
     Second_Statement = from_member in social_graph[to_member]['following']
     #IF-STATEMENTS
     if First_Statement == 1 and Second_Statement == 1:
-        status = 'friends'.title()
+        return 'friends'
     elif First_Statement == 1 and Second_Statement == 0:
-        status = 'follower'.title()
+        return 'follower'
     elif First_Statement == 0 and Second_Statement == 1:
-        status = 'followed'.title() + ' ' + 'by'
+        return 'followed by'
     elif First_Statement == 0 and Second_Statement == 0:
-        status = 'no relationship'.title()
-    #RELATIONSHIP-STATUS
-    return status
+        return 'no relationship'
 
 def tic_tac_toe(board):
     '''Tic Tac Toe. 
@@ -151,26 +149,10 @@ def eta(first_stop, second_stop, route_map):
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     final_time = 0
-    if (first_stop, second_stop) in route_map:
-        travel_time = route_map[(first_stop, second_stop)]["travel_time_mins"]
-        final_time = travel_time
-    else:
-        keys = route_map.keys()
-        key_list = list(keys)
-        for i in range(0,len(route_map)):
-            if key_list[i][0] is first_stop:
-                travel_time = route_map[key_list[i]]["travel_time_mins"]
-                final_time += travel_time
-                i += 1
-                if i >= len(route_map):
-                    i = 0
-                while key_list[i][1] is not second_stop:
-                    travel_time = route_map[key_list[i]]["travel_time_mins"]
-                    final_time += travel_time
-                    i += 1
-                    if i >= len(route_map):
-                        i = 0
-            elif key_list[i][1] is second_stop:
-                travel_time = route_map[key_list[i]]["travel_time_mins"]
-                final_time += travel_time
+    while first_stop != second_stop:
+        for i in route_map:
+            if first_stop == i[0]:
+                first_stop = i[1]
+                final_time += route_map[i]['travel_time_mins']
+                break
     return final_time
